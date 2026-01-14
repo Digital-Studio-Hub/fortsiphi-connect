@@ -1,0 +1,358 @@
+FORTSIPHI (PTY) LTD
+BUSINESS OVERVIEW
+Build a professional, compliance-driven, and authority-focused website for Fortsiphi (Pty) Ltd, a multi-service business solutions company operating across South Africa.
+
+Fortsiphi provides:
+
+Professional commercial cleaning services
+
+Hands-on tender consulting and compliance support
+
+Entrepreneur and SMME development via the Tender Ready Hub
+
+The website must position Fortsiphi as:
+
+Reliable
+
+Compliant
+
+Structured
+
+Results-driven
+
+Procurement-ready
+
+Trusted by SMMEs, corporates, and institutions
+
+This is not a generic cleaning website and not a consulting blog.
+It is a business readiness and service execution platform.
+
+PRIMARY OBJECTIVES
+The website must:
+
+Establish institutional-level credibility
+
+Clearly separate Cleaning Services and Tender Consulting
+
+Demonstrate compliance strength
+
+Generate qualified enquiries
+
+Educate SMMEs without overwhelming them
+
+Convert visitors into consultations and service contracts
+
+CORE SERVICE DIVISIONS (CLEARLY SEGMENTED)
+1. PROFESSIONAL CLEANING SERVICES
+Positioned for offices, commercial buildings, and post-construction sites.
+
+Services to Feature
+
+Office & commercial cleaning
+
+Daily, weekly, monthly contracts
+
+Deep cleaning services
+
+Post-construction cleaning
+
+Once-off & contract cleaning
+
+Supply of cleaning materials
+
+Why Choose Fortsiphi
+
+PAYE, UIF & COIDA compliant staff
+
+PPE-compliant & trained personnel
+
+Registered with NCCA and ISSA
+
+Quality control inspections & supervision
+
+2. TENDER CONSULTING & COMPLIANCE SUPPORT
+This must feel hands-on and execution-focused, not advisory-only.
+
+Services Include
+
+Business compliance support (CIPC, tax, mandatory docs)
+
+Compliance gap assessments
+
+Tender readiness assessments
+
+Tender document interpretation
+
+Completion & preparation of tender documents
+
+Pricing & costing support
+
+RFQs & quotation preparation
+
+Tender administration & submission support
+
+Key positioning message:
+
+We prepare and submit — not just advise.
+
+3. TENDER READY HUB
+Position this as a structured SMME development platform.
+
+Purpose:
+
+Prepare entrepreneurs before they submit tenders
+
+Ensure businesses are compliant, structured, and competitive
+
+Reduce failed or disqualified tender submissions
+
+Tone:
+
+Empowering
+
+Practical
+
+Professional
+
+No hype
+
+DESIGN & BRAND DIRECTION (5-STAR, INSTITUTIONAL)
+Design Style
+Corporate
+
+Clean
+
+Authoritative
+
+Structured
+
+Minimal
+
+Trust-focused
+
+Avoid:
+
+Loud colours
+
+Over-animation
+
+Marketing gimmicks
+
+Informal tone
+
+COLOUR PALETTE (PROFESSIONAL & COMPLIANT)
+Role
+
+Colour
+
+HEX
+
+Primary
+
+Deep Navy
+
+#0F2A44
+
+Secondary
+
+Slate Grey
+
+#4B5563
+
+Background
+
+Soft White
+
+#F9FAFB
+
+Accent
+
+Compliance Gold
+
+#C8A951
+
+CTA
+
+Emerald Green
+
+#16A34A
+
+TYPOGRAPHY
+Headings: Montserrat / Poppins
+
+Body: Inter / Roboto
+
+Buttons: Clear, strong, professional
+
+WEBSITE STRUCTURE (ENTERPRISE-READY)
+1 HOME PAGE
+Hero Section
+Headline:
+
+From Compliance to Contract.
+
+Sub-headline:
+
+Professional Cleaning Services and Hands-on Tender Consulting for SMMEs, Corporates, and Institutions.
+
+CTAs:
+
+Request a Consultation
+
+WhatsApp Us
+
+Sections:
+
+About Fortsiphi
+
+Core Services Overview
+
+Compliance & Accreditation
+
+Why Choose Fortsiphi
+
+Strong CTA banner
+
+2 ABOUT FORTSIPHI
+Include:
+
+Company mission
+
+Approach to service delivery
+
+Commitment to compliance
+
+Support for business growth & procurement readiness
+
+3 PROFESSIONAL CLEANING SERVICES
+Service breakdown
+
+Contract options
+
+Compliance assurance
+
+Operational professionalism
+
+CTA:
+
+Request a Cleaning Proposal
+
+4 TENDER CONSULTING & COMPLIANCE
+Step-by-step explanation of support
+
+Emphasis on execution
+
+Differentiation from “advisory-only” consultants
+
+CTA:
+
+Book a Tender Readiness Assessment
+
+5 TENDER READY HUB
+What it is
+
+Who it’s for
+
+Outcomes
+
+How businesses benefit
+
+CTA:
+
+Join the Tender Ready Hub
+
+6 COMPLIANCE & ACCREDITATION
+Dedicated page or strong section listing:
+
+PAYE compliant
+
+UIF compliant
+
+COIDA compliant
+
+Tax compliant
+
+B-BBEE compliant
+
+NCCA registered
+
+ISSA registered
+
+PPE compliant operations
+
+7 CONTACT PAGE
+Contact Details
+Phone: 010 065 3247
+WhatsApp: 081 365 5901
+Email: info@fortsiphi.co.za
+Address:
+Unit 49, Electron Exchange
+50 Electron Avenue
+Isando, Kempton Park, 1619
+
+Include:
+
+Enquiry form
+
+WhatsApp CTA
+
+Google Maps embed
+
+IMAGES & MEDIA RULES
+Corporate cleaning visuals
+
+Professional office environments
+
+Compliance documentation visuals (abstract)
+
+No generic stock clichés
+
+WebP format
+
+Lazy loading
+
+Consistent tone
+
+SEO & DISCOVERABILITY
+Implement:
+
+Organization schema
+
+LocalBusiness schema
+
+Service schema
+
+Target keywords:
+
+Commercial cleaning services
+
+Office cleaning contracts
+
+Tender consulting services
+
+Tender compliance support
+
+SMME tender readiness
+
+TECHNICAL & PERFORMANCE REQUIREMENTS
+Mobile-first responsive design
+
+Load time under 1.5 seconds
+
+Secure HTTPS
+
+Contact form validation
+
+Analytics ready
+
+Clean URLs
+
+SITEMAP STRUCTURE
+/
+ /about
+ /cleaning-services
+ /tender-consulting
+ /tender-ready-hub
+ /compliance-accreditation
+ /contact
+ /privacy-policy
