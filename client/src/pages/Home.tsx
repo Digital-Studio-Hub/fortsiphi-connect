@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import logoWhite from "@assets/White_Logo_1768385337557.png";
-import certBadge from "@assets/Badge_Level_1_1768384224164.png";
 
 const services = [
   {
@@ -62,22 +61,26 @@ const whyChooseUs = [
   {
     icon: Shield,
     title: "Full Compliance",
-    description: "All staff are PAYE, UIF & COIDA compliant with proper documentation.",
+    description:
+      "All staff are PAYE, UIF & COIDA compliant with proper documentation.",
   },
   {
     icon: Award,
     title: "Industry Registered",
-    description: "Registered with NCCA and ISSA for professional cleaning standards.",
+    description:
+      "Registered with NCCA and ISSA for professional cleaning standards.",
   },
   {
     icon: Target,
     title: "Execution Focus",
-    description: "We prepare and submit tenders — not just provide advisory services.",
+    description:
+      "We prepare and submit tenders — not just provide advisory services.",
   },
   {
     icon: Handshake,
     title: "Trusted Partner",
-    description: "Serving SMMEs, corporates, and institutions across South Africa.",
+    description:
+      "Serving SMMEs, corporates, and institutions across South Africa.",
   },
 ];
 
@@ -101,7 +104,8 @@ export default function Home() {
             From Compliance to Contract.
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Professional Cleaning Services and Hands-on Tender Consulting for SMMEs, Corporates, and Institutions.
+            Professional Cleaning Services and Hands-on Tender Consulting for
+            SMMEs, Corporates, and Institutions.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact">
@@ -144,10 +148,16 @@ export default function Home() {
                 Building Business Readiness & Delivering Excellence
               </h2>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Fortsiphi (Pty) Ltd is a multi-service business solutions company operating across South Africa. We specialize in professional commercial cleaning services and hands-on tender consulting that helps businesses move from compliance to successful contracts.
+                Fortsiphi (Pty) Ltd is a multi-service business solutions
+                company operating across South Africa. We specialize in
+                professional commercial cleaning services and hands-on tender
+                consulting that helps businesses move from compliance to
+                successful contracts.
               </p>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Our mission is to prepare, support, and empower SMMEs, corporates, and institutions with structured, compliant, and results-driven services.
+                Our mission is to prepare, support, and empower SMMEs,
+                corporates, and institutions with structured, compliant, and
+                results-driven services.
               </p>
               <Link href="/about">
                 <Button variant="outline" data-testid="button-learn-more">
@@ -162,22 +172,30 @@ export default function Home() {
                   <div className="bg-card rounded-md p-6 text-center">
                     <Building2 className="h-10 w-10 mx-auto mb-3 text-primary" />
                     <p className="text-2xl font-bold text-foreground">100+</p>
-                    <p className="text-sm text-muted-foreground">Commercial Clients</p>
+                    <p className="text-sm text-muted-foreground">
+                      Commercial Clients
+                    </p>
                   </div>
                   <div className="bg-card rounded-md p-6 text-center">
                     <ClipboardCheck className="h-10 w-10 mx-auto mb-3 text-cta" />
                     <p className="text-2xl font-bold text-foreground">500+</p>
-                    <p className="text-sm text-muted-foreground">Tenders Prepared</p>
+                    <p className="text-sm text-muted-foreground">
+                      Tenders Prepared
+                    </p>
                   </div>
                   <div className="bg-card rounded-md p-6 text-center">
                     <Briefcase className="h-10 w-10 mx-auto mb-3 text-gold" />
                     <p className="text-2xl font-bold text-foreground">50+</p>
-                    <p className="text-sm text-muted-foreground">SMMEs Supported</p>
+                    <p className="text-sm text-muted-foreground">
+                      SMMEs Supported
+                    </p>
                   </div>
                   <div className="bg-card rounded-md p-6 text-center">
                     <Users className="h-10 w-10 mx-auto mb-3 text-secondary" />
                     <p className="text-2xl font-bold text-foreground">8+</p>
-                    <p className="text-sm text-muted-foreground">Compliance Badges</p>
+                    <p className="text-sm text-muted-foreground">
+                      Compliance Badges
+                    </p>
                   </div>
                 </div>
               </div>
@@ -196,7 +214,8 @@ export default function Home() {
               Comprehensive Business Solutions
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              From professional cleaning to tender consulting, we provide end-to-end support for your business needs.
+              From professional cleaning to tender consulting, we provide
+              end-to-end support for your business needs.
             </p>
           </div>
 
@@ -212,7 +231,11 @@ export default function Home() {
                     {service.description}
                   </p>
                   <Link href={service.href}>
-                    <Button variant="ghost" className="p-0 h-auto text-primary" data-testid={`link-service-${service.title.toLowerCase().replace(/\s+/g, "-")}`}>
+                    <Button
+                      variant="ghost"
+                      className="p-0 h-auto text-primary"
+                      data-testid={`link-service-${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    >
                       Learn More
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -234,12 +257,9 @@ export default function Home() {
               Fully Compliant Operations
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We maintain the highest standards of compliance and are registered with leading industry bodies.
+              We maintain the highest standards of compliance and are registered
+              with leading industry bodies.
             </p>
-          </div>
-
-          <div className="flex justify-center mb-8">
-            <img src={certBadge} alt="Certified by Lekker Network - Level 1" className="h-32 w-auto" />
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
@@ -250,7 +270,7 @@ export default function Home() {
                 className="px-4 py-2 text-sm bg-card border"
               >
                 <CheckCircle className="h-4 w-4 mr-2 text-cta" />
-                {badge}
+                <p className="text-cta">{badge}</p>
               </Badge>
             ))}
           </div>
@@ -301,7 +321,8 @@ export default function Home() {
             Ready to Get Started?
           </h2>
           <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto mb-10">
-            Whether you need professional cleaning services or tender consulting support, we're here to help your business succeed.
+            Whether you need professional cleaning services or tender consulting
+            support, we're here to help your business succeed.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact">
