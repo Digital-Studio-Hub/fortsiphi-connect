@@ -40,3 +40,23 @@ export const insertContactInquirySchema = createInsertSchema(contactInquiries).o
 
 export type InsertContactInquiry = z.infer<typeof insertContactInquirySchema>;
 export type ContactInquiry = typeof contactInquiries.$inferSelect;
+
+export const checklistDownloads = pgTable("checklist_downloads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  company: text("company"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertChecklistDownloadSchema = createInsertSchema(checklistDownloads).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  email: z.string().email("Please enter a valid email address"),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+});
+
+export type InsertChecklistDownload = z.infer<typeof insertChecklistDownloadSchema>;
+export type ChecklistDownload = typeof checklistDownloads.$inferSelect;

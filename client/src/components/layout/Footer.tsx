@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
-import logoWhite from "@assets/White_Logo_1768385337557.png";
+import logoWhite from "@assets/White_Logo_1773066374475.png";
 import lekkerLogo from "@assets/lekkerlogo_1768384232442.png";
 import certBadge from "@assets/Badge_Level_1_1768384224164.png";
 
@@ -13,7 +13,7 @@ export function Footer() {
           <div className="space-y-4">
             <img src={logoWhite} alt="Fortsiphi" className="h-16 w-auto" />
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
-              From Compliance to Contract. Professional cleaning services and hands-on tender consulting for SMMEs, corporates, and institutions.
+              Compliance & Tender Execution Specialists. We prepare, structure, and submit tenders while ensuring full compliance.
             </p>
           </div>
 
@@ -26,13 +26,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/cleaning-services" className="text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors" data-testid="link-footer-cleaning">
-                  Cleaning Services
+                <Link href="/tender-consulting" className="text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors" data-testid="link-footer-tender">
+                  Tender Consulting
                 </Link>
               </li>
               <li>
-                <Link href="/tender-consulting" className="text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors" data-testid="link-footer-tender">
-                  Tender Consulting
+                <Link href="/compliance" className="text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors" data-testid="link-footer-compliance">
+                  Compliance
                 </Link>
               </li>
               <li>
@@ -41,8 +41,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/compliance" className="text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors" data-testid="link-footer-compliance">
-                  Compliance
+                <Link href="/cleaning-services" className="text-primary-foreground/80 hover:text-primary-foreground text-sm transition-colors" data-testid="link-footer-cleaning">
+                  Cleaning Services
                 </Link>
               </li>
             </ul>

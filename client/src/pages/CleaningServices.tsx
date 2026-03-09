@@ -13,6 +13,8 @@ import {
   Clock,
   Shield,
   Users,
+  FileText,
+  ClipboardCheck,
 } from "lucide-react";
 
 const services = [
@@ -54,11 +56,27 @@ const services = [
   },
 ];
 
-const compliancePoints = [
-  { icon: Shield, text: "PAYE, UIF & COIDA compliant staff" },
-  { icon: Users, text: "PPE-compliant & trained personnel" },
-  { icon: CheckCircle, text: "Registered with NCCA and ISSA" },
-  { icon: Sparkles, text: "Quality control inspections & supervision" },
+const complianceItems = [
+  {
+    icon: Shield,
+    title: "PAYE, UIF & COIDA Compliant",
+    description: "All cleaning staff are formally registered for PAYE, UIF, and COIDA. Proof of registration and good standing is available for procurement review.",
+  },
+  {
+    icon: Users,
+    title: "PPE-Compliant & Trained Personnel",
+    description: "Every team member is trained, uniformed, and equipped with proper personal protective equipment in line with occupational health and safety requirements.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "NCCA & ISSA Registered",
+    description: "Registered with the National Contract Cleaners Association (NCCA) and the International Sanitary Supply Association (ISSA) for industry-standard service delivery.",
+  },
+  {
+    icon: FileText,
+    title: "Procurement-Ready Documentation",
+    description: "All compliance certificates, tax clearance, B-BBEE affidavit, company registration, and statutory documents are current and available on request for tender and procurement processes.",
+  },
 ];
 
 export default function CleaningServices() {
@@ -70,13 +88,15 @@ export default function CleaningServices() {
         </div>
         <div className="container relative mx-auto px-4 md:px-6 text-center">
           <Badge className="mb-4 bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20">
-            Professional Cleaning
+            Compliant Commercial Cleaning
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
             Professional Cleaning Services
           </h1>
           <p className="text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-            Positioned for offices, commercial buildings, and post-construction sites. All staff are fully compliant and professionally trained.
+            Fully compliant cleaning operations for offices, commercial
+            buildings, and post-construction sites. All staff are PAYE, UIF &
+            COIDA registered with procurement-ready documentation available.
           </p>
           <Link href="/contact">
             <Button
@@ -93,6 +113,96 @@ export default function CleaningServices() {
 
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 md:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <Badge className="mb-4 bg-cta/10 text-cta border-cta/20">
+                Compliance First
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                Structured, Compliant & Procurement-Ready
+              </h2>
+              <p className="text-muted-foreground mb-8 leading-relaxed">
+                At Fortsiphi, cleaning is not just operational — it is structured
+                and compliance-driven. Every aspect of our cleaning division is
+                set up to meet the documentation and compliance requirements of
+                corporate procurement, government tenders, and institutional
+                contracts.
+              </p>
+
+              <div className="space-y-6">
+                {complianceItems.map((item) => (
+                  <div key={item.title} className="flex items-start gap-4">
+                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-cta/10 flex-shrink-0 mt-0.5">
+                      <item.icon className="h-5 w-5 text-cta" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <Card className="bg-card border-gold/20">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-card-foreground flex items-center gap-2">
+                    <Shield className="h-5 w-5 text-gold" />
+                    Documentation Available for Procurement
+                  </h3>
+                  <div className="space-y-3">
+                    {[
+                      "CIPC Registration Certificate",
+                      "Valid Tax Clearance (TCS Pin)",
+                      "B-BBEE Certificate / Affidavit",
+                      "PAYE Registration Confirmation",
+                      "UIF Registration & Proof",
+                      "COIDA Letter of Good Standing",
+                      "NCCA Membership Certificate",
+                      "ISSA Registration",
+                      "Health & Safety Policy",
+                      "Company Profile & References",
+                    ].map((doc) => (
+                      <div key={doc} className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-cta flex-shrink-0" />
+                        <span className="text-sm text-muted-foreground">{doc}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-card">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-card-foreground">Contract Options</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between p-3 bg-muted rounded-md">
+                      <span className="font-medium text-sm">Daily Contracts</span>
+                      <Badge variant="secondary">Available</Badge>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-muted rounded-md">
+                      <span className="font-medium text-sm">Weekly Contracts</span>
+                      <Badge variant="secondary">Available</Badge>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-muted rounded-md">
+                      <span className="font-medium text-sm">Monthly Contracts</span>
+                      <Badge variant="secondary">Available</Badge>
+                    </div>
+                    <div className="flex items-center justify-between p-3 bg-muted rounded-md">
+                      <span className="font-medium text-sm">Once-Off Services</span>
+                      <Badge variant="secondary">Available</Badge>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-muted">
+        <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               Our Services
@@ -101,7 +211,9 @@ export default function CleaningServices() {
               Comprehensive Cleaning Solutions
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              From daily office maintenance to specialized post-construction cleanup, we deliver excellence across all cleaning services.
+              From daily office maintenance to specialized post-construction
+              cleanup, we deliver compliant, quality-assured service across all
+              cleaning categories.
             </p>
           </div>
 
@@ -131,70 +243,14 @@ export default function CleaningServices() {
         </div>
       </section>
 
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="mb-4 bg-cta/10 text-cta border-cta/20">
-                Why Choose Fortsiphi
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-                Compliant & Professional Operations
-              </h2>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                At Fortsiphi, we maintain the highest standards of compliance and professionalism. Our cleaning staff are fully registered, trained, and equipped to deliver exceptional service.
-              </p>
-
-              <div className="space-y-4">
-                {compliancePoints.map((point) => (
-                  <div key={point.text} className="flex items-start gap-4">
-                    <div className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-cta/10 flex-shrink-0">
-                      <point.icon className="h-5 w-5 text-cta" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-foreground">{point.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <Card className="bg-card">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold mb-6 text-card-foreground">Contract Options</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-muted rounded-md">
-                      <span className="font-medium">Daily Contracts</span>
-                      <Badge variant="secondary">Available</Badge>
-                    </div>
-                    <div className="flex items-center justify-between p-4 bg-muted rounded-md">
-                      <span className="font-medium">Weekly Contracts</span>
-                      <Badge variant="secondary">Available</Badge>
-                    </div>
-                    <div className="flex items-center justify-between p-4 bg-muted rounded-md">
-                      <span className="font-medium">Monthly Contracts</span>
-                      <Badge variant="secondary">Available</Badge>
-                    </div>
-                    <div className="flex items-center justify-between p-4 bg-muted rounded-md">
-                      <span className="font-medium">Once-Off Services</span>
-                      <Badge variant="secondary">Available</Badge>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="py-20 bg-primary">
         <div className="container mx-auto px-4 md:px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
             Request a Cleaning Proposal
           </h2>
           <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto mb-10">
-            Get a customized cleaning proposal tailored to your business needs. Our team will assess your requirements and provide a comprehensive quote.
+            Get a customized, compliant cleaning proposal with all required
+            documentation for your procurement process.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact">

@@ -13,7 +13,7 @@ import {
   Award,
   Briefcase,
 } from "lucide-react";
-import logoMain from "@assets/Main_Logo_1768385337556.png";
+import logoMain from "@assets/Main_Logo_1773066374474.png";
 
 const values = [
   {

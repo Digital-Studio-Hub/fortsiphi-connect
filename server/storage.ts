@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type ContactInquiry, type InsertContactInquiry } from "@shared/schema";
+import { type User, type InsertUser, type ContactInquiry, type InsertContactInquiry, type ChecklistDownload, type InsertChecklistDownload } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -7,15 +7,19 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   createContactInquiry(inquiry: InsertContactInquiry): Promise<ContactInquiry>;
   getContactInquiries(): Promise<ContactInquiry[]>;
+  createChecklistDownload(download: InsertChecklistDownload): Promise<ChecklistDownload>;
+  getChecklistDownloads(): Promise<ChecklistDownload[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
   private contactInquiries: Map<string, ContactInquiry>;
+  private checklistDownloads: Map<string, ChecklistDownload>;
 
   constructor() {
     this.users = new Map();
     this.contactInquiries = new Map();
+    this.checklistDownloads = new Map();
   }
 
   async getUser(id: string): Promise<User | undefined> {
@@ -50,6 +54,25 @@ export class MemStorage implements IStorage {
 
   async getContactInquiries(): Promise<ContactInquiry[]> {
     return Array.from(this.contactInquiries.values()).sort(
+      (a, b) => (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0)
+    );
+  }
+
+  async createChecklistDownload(download: InsertChecklistDownload): Promise<ChecklistDownload> {
+    const id = randomUUID();
+    const checklistDownload: ChecklistDownload = {
+      ...download,
+      id,
+      phone: download.phone || null,
+      company: download.company || null,
+      createdAt: new Date(),
+    };
+    this.checklistDownloads.set(id, checklistDownload);
+    return checklistDownload;
+  }
+
+  async getChecklistDownloads(): Promise<ChecklistDownload[]> {
+    return Array.from(this.checklistDownloads.values()).sort(
       (a, b) => (b.createdAt?.getTime() || 0) - (a.createdAt?.getTime() || 0)
     );
   }

@@ -3,15 +3,15 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone, X } from "lucide-react";
-import logoMain from "@assets/Main_Logo_1768385337556.png";
+import logoMain from "@assets/Main_Logo_1773066374474.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/cleaning-services", label: "Cleaning Services" },
   { href: "/tender-consulting", label: "Tender Consulting" },
-  { href: "/tender-ready-hub", label: "Tender Ready Hub" },
   { href: "/compliance", label: "Compliance" },
+  { href: "/tender-ready-hub", label: "Tender Ready Hub" },
+  { href: "/cleaning-services", label: "Cleaning Services" },
   { href: "/contact", label: "Contact" },
 ];
 
