@@ -4,6 +4,10 @@ import { storage } from "./storage";
 import { insertContactInquirySchema, insertChecklistDownloadSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
+import {
+  sendContactInquiryEmails,
+  sendChecklistDownloadEmails,
+} from "./email";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -13,6 +17,7 @@ export async function registerRoutes(
     try {
       const validatedData = insertContactInquirySchema.parse(req.body);
       const inquiry = await storage.createContactInquiry(validatedData);
+      await sendContactInquiryEmails(inquiry);
       res.status(201).json({
         success: true,
         message: "Your enquiry has been received. We will be in touch soon.",
@@ -53,6 +58,7 @@ export async function registerRoutes(
     try {
       const validatedData = insertChecklistDownloadSchema.parse(req.body);
       const download = await storage.createChecklistDownload(validatedData);
+      await sendChecklistDownloadEmails(download);
       res.status(201).json({
         success: true,
         message: "Thank you! Your download will begin shortly.",

@@ -1,14 +1,33 @@
 import { type Express } from "express";
-import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
-import viteConfig from "../vite.config";
 import fs from "fs";
 import path from "path";
 import { nanoid } from "nanoid";
 
-const viteLogger = createLogger();
-
 export async function setupVite(server: Server, app: Express) {
+  const [{ createServer: createViteServer, createLogger }, { default: react }] =
+    await Promise.all([
+      import("vite"),
+      import("@vitejs/plugin-react"),
+    ]);
+  const { default: runtimeErrorOverlay } = await import(
+    "@replit/vite-plugin-runtime-error-modal"
+  );
+
+  const viteLogger = createLogger();
+  const rootDirectory = path.resolve(import.meta.dirname, "..", "client");
+
+  const plugins = [react(), runtimeErrorOverlay()];
+
+  if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
+    const [{ cartographer }, { devBanner }] = await Promise.all([
+      import("@replit/vite-plugin-cartographer"),
+      import("@replit/vite-plugin-dev-banner"),
+    ]);
+
+    plugins.push(cartographer(), devBanner());
+  }
+
   const serverOptions = {
     middlewareMode: true,
     hmr: { server, path: "/vite-hmr" },
@@ -16,7 +35,26 @@ export async function setupVite(server: Server, app: Express) {
   };
 
   const vite = await createViteServer({
-    ...viteConfig,
+    plugins,
+    resolve: {
+      alias: {
+        "@": path.resolve(import.meta.dirname, "..", "client", "src"),
+        "@shared": path.resolve(import.meta.dirname, "..", "shared"),
+        "@assets": path.resolve(import.meta.dirname, "..", "attached_assets"),
+      },
+    },
+    root: rootDirectory,
+    build: {
+      outDir: path.resolve(import.meta.dirname, "..", "dist", "public"),
+      emptyOutDir: true,
+    },
+    server: {
+      ...serverOptions,
+      fs: {
+        strict: true,
+        deny: ["**/.*"],
+      },
+    },
     configFile: false,
     customLogger: {
       ...viteLogger,
@@ -25,7 +63,6 @@ export async function setupVite(server: Server, app: Express) {
         process.exit(1);
       },
     },
-    server: serverOptions,
     appType: "custom",
   });
 
@@ -35,12 +72,7 @@ export async function setupVite(server: Server, app: Express) {
     const url = req.originalUrl;
 
     try {
-      const clientTemplate = path.resolve(
-        import.meta.dirname,
-        "..",
-        "client",
-        "index.html",
-      );
+      const clientTemplate = path.resolve(rootDirectory, "index.html");
 
       // always reload the index.html file from disk incase it changes
       let template = await fs.promises.readFile(clientTemplate, "utf-8");

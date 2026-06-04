@@ -181,13 +181,14 @@ export default function Contact() {
                       <FormField
                         control={form.control}
                         name="phone"
-                        render={({ field }) => (
+                        render={({ field: { value, ...field } }) => (
                           <FormItem>
                             <FormLabel>Phone Number</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Your phone number"
                                 {...field}
+                                value={value ?? ""}
                                 data-testid="input-phone"
                               />
                             </FormControl>
@@ -198,13 +199,14 @@ export default function Contact() {
                       <FormField
                         control={form.control}
                         name="company"
-                        render={({ field }) => (
+                        render={({ field: { value, ...field } }) => (
                           <FormItem>
                             <FormLabel>Company Name</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Your company name"
                                 {...field}
+                                value={value ?? ""}
                                 data-testid="input-company"
                               />
                             </FormControl>
