@@ -1,6 +1,7 @@
 node_modules
 dist
 .git
-.github
-.env.local
-.env.*.local
+.local
+.replit
+.env
+*.log
