@@ -11,7 +11,7 @@
  */
 
 const WID = process.env.LEKKER_WORKSPACE_ID || "4c2ce7cb-3a7c-4d12-adae-85029290a2c9";
-const TOKEN = process.env.LEKKER_TOKEN;
+const TOKEN = process.env.LEKKER_TOKEN || "d86fec0f-ff79-4f77-b1a0-f85061f93fee";
 
 if (!TOKEN) {
   console.warn("LEKKER_TOKEN not set - Connect API calls will fail");
