@@ -10,11 +10,19 @@
  * import { submitContactToLekker, getFeed, createCheckout } from './lekker-connect';
  */
 
-const WID = process.env.LEKKER_WORKSPACE_ID;
+const WID = process.env.LEKKER_WORKSPACE_ID || "4c2ce7cb-3a7c-4d12-adae-85029290a2c9";
 const TOKEN = process.env.LEKKER_TOKEN;
 
-if (!WID || !TOKEN) {
-  console.warn('LEKKER_WORKSPACE_ID or LEKKER_TOKEN not set - Connect API calls will fail');
+if (!TOKEN) {
+  console.warn("LEKKER_TOKEN not set - Connect API calls will fail");
+}
+
+export function isLekkerConnectConfigured() {
+  return Boolean(WID && TOKEN);
+}
+
+export function getLekkerWorkspaceId() {
+  return WID;
 }
 
 const BASE = `https://lekker.network/api/connect/${WID}`;
