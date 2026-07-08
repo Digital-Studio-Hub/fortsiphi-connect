@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -14,10 +14,14 @@ import TenderReadyHub from "@/pages/TenderReadyHub";
 import Compliance from "@/pages/Compliance";
 import Contact from "@/pages/Contact";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TenderThisLanding from "@/pages/TenderThisLanding";
+
+const STANDALONE_ROUTES = ["/tender-this"];
 
 function Router() {
   return (
     <Switch>
+      <Route path="/tender-this" component={TenderThisLanding} />
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/cleaning-services" component={CleaningServices} />
@@ -32,15 +36,19 @@ function Router() {
 }
 
 function App() {
+  const [location] = useLocation();
+  const pathname = location.split("?")[0];
+  const isStandalone = STANDALONE_ROUTES.includes(pathname);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen flex flex-col bg-background">
-          <Navigation />
+          {!isStandalone && <Navigation />}
           <main className="flex-1">
             <Router />
           </main>
-          <Footer />
+          {!isStandalone && <Footer />}
         </div>
         <Toaster />
       </TooltipProvider>

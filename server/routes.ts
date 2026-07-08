@@ -11,6 +11,7 @@ import {
 import { submitContactToLekker } from "./lekker-connect";
 import { registerLekkerConnectRoutes } from "./lekker-connect-routes";
 import { registerLekkerHostedPages } from "./lekker-hosted-pages";
+import { registerBootcampRoutes } from "./bootcamp-routes";
 
 function contactSourceUrl(req: { headers: Record<string, unknown>; body?: Record<string, unknown> }) {
   return (
@@ -57,6 +58,7 @@ export async function registerRoutes(
 ): Promise<Server> {
   registerLekkerConnectRoutes(app);
   registerLekkerHostedPages(app);
+  registerBootcampRoutes(app);
 
   app.post("/api/contact", async (req, res) => {
     try {

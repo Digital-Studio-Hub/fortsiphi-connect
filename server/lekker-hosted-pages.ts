@@ -76,7 +76,7 @@ function saveCart(c){ localStorage.setItem(cartKey, JSON.stringify(c)); renderCa
 function addToCart(p){
   const cart = getCart();
   const i = cart.findIndex(x => x.productId === p.id);
-  if (i >= 0) cart[i].qty += 1; else cart.push({ productId: p.id, name: p.name, priceInCents: p.priceInCents, priceFormatted: p.priceFormatted, imageUrl: p.imageUrl, qty: 1 });
+  if (i >= 0) cart[i].qty += 1; else cart.push({ productId: p.id, id: p.id, name: p.name, priceInCents: p.priceInCents, priceFormatted: p.priceFormatted, imageUrl: p.imageUrl, qty: 1 });
   saveCart(cart);
 }
 function renderCart(){
@@ -129,7 +129,7 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        items: cart.map(i => ({ name: i.name, quantity: i.qty, priceInCents: i.priceInCents })),
+        items: cart.map(i => ({ productId: i.productId || i.id, name: i.name, quantity: i.qty, priceInCents: i.priceInCents })),
         customer: { name, email: isEmail ? contact : undefined, phone: !isEmail ? contact : undefined },
         returnUrl: location.origin + "/checkout?payment=success",
         cancelUrl: location.origin + "/checkout?payment=cancelled",

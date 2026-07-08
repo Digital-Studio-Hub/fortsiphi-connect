@@ -29,34 +29,56 @@ function handleLekkerError(res: Response, err: unknown, context: string) {
   });
 }
 
-function normalizeCheckoutBody(body: Record<string, unknown>) {
+type CheckoutItem = {
+  productId?: string;
+  name: string;
+  quantity: number;
+  priceInCents?: number;
+};
+
+type CheckoutPayload = {
+  items: CheckoutItem[];
+  customer: { name: string; email?: string; phone?: string };
+  returnUrl?: string;
+  cancelUrl?: string;
+};
+
+function mapCheckoutItems(items: unknown): CheckoutItem[] {
+  if (!Array.isArray(items)) return [];
+
+  return items.map((item: Record<string, unknown>) => ({
+    productId: item.productId ? String(item.productId) : undefined,
+    name: String(item.name || "Item"),
+    quantity: Math.max(1, Number(item.quantity ?? item.qty ?? 1) || 1),
+    priceInCents:
+      typeof item.priceInCents === "number"
+        ? item.priceInCents
+        : typeof item.price === "number"
+          ? Math.round(item.price * 100)
+          : undefined,
+  }));
+}
+
+function normalizeCheckoutBody(body: Record<string, unknown>): CheckoutPayload {
   if (body.customer && typeof body.customer === "object") {
-    return body as {
-      items: Array<{ name: string; quantity: number; priceInCents: number }>;
-      customer: { name: string; email?: string; phone?: string };
-      returnUrl?: string;
-      cancelUrl?: string;
+    const customer = body.customer as Record<string, unknown>;
+    return {
+      items: mapCheckoutItems(body.items),
+      customer: {
+        name: String(customer.name || "Customer"),
+        email: customer.email ? String(customer.email) : undefined,
+        phone: customer.phone ? String(customer.phone) : undefined,
+      },
+      returnUrl: (body.returnUrl || body.successUrl) as string | undefined,
+      cancelUrl: body.cancelUrl as string | undefined,
     };
   }
 
   const identifier = String(body.customerEmail || body.customerMobile || "").trim();
   const isEmail = identifier.includes("@");
 
-  const items = Array.isArray(body.items)
-    ? body.items.map((item: Record<string, unknown>) => ({
-        name: String(item.name || "Item"),
-        quantity: Math.max(1, Number(item.quantity ?? item.qty ?? 1) || 1),
-        priceInCents:
-          typeof item.priceInCents === "number"
-            ? item.priceInCents
-            : typeof item.price === "number"
-              ? Math.round(item.price * 100)
-              : 0,
-      }))
-    : [];
-
   return {
-    items,
+    items: mapCheckoutItems(body.items),
     customer: {
       name: String(body.customerName || identifier || "Customer"),
       email: isEmail ? identifier : undefined,
@@ -112,6 +134,13 @@ export function registerLekkerConnectRoutes(app: Express) {
           success: false,
           error: "validation_error",
           message: "customer.name is required.",
+        });
+      }
+      if (!payload.items.every((item) => item.productId)) {
+        return res.status(400).json({
+          success: false,
+          error: "validation_error",
+          message: "Each checkout item must include a productId.",
         });
       }
 
