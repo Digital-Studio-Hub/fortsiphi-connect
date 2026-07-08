@@ -3,6 +3,7 @@ import { Loader2, Lock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { submitPayLekkerForm } from "@/lib/paylekker";
 
 interface CheckoutFormProps {
   productId: string;
@@ -66,7 +67,7 @@ export function CheckoutForm({
       const paymentUrl = data.paymentUrl || data.checkoutUrl;
       if (!paymentUrl) throw new Error("No payment URL returned from PayLekker");
 
-      window.location.href = paymentUrl;
+      submitPayLekkerForm(paymentUrl);
     } catch (err) {
       toast({
         title: "Payment could not start",

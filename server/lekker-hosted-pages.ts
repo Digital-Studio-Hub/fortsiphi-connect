@@ -140,7 +140,17 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
     const url = data.paymentUrl || data.checkoutUrl;
     if (!url) throw new Error("No payment URL returned");
     localStorage.removeItem(cartKey);
-    location.href = url;
+    const payUrl = new URL(url);
+    const payload = payUrl.searchParams.get("payload");
+    const signature = payUrl.searchParams.get("signature");
+    if (!payload || !signature) throw new Error("Invalid PayLekker payment URL");
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = payUrl.origin + payUrl.pathname;
+    const p = document.createElement("input"); p.type = "hidden"; p.name = "payload"; p.value = payload; form.appendChild(p);
+    const s = document.createElement("input"); s.type = "hidden"; s.name = "signature"; s.value = signature; form.appendChild(s);
+    document.body.appendChild(form);
+    form.submit();
   } catch (e) {
     err.textContent = e.message;
     btn.disabled = false; btn.textContent = "Proceed to payment";
