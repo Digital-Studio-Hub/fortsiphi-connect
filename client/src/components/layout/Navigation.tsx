@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Phone, X } from "lucide-react";
+import { Menu, Phone, ArrowRight } from "lucide-react";
 import logoMain from "@assets/Main_Logo_1773066374474.png";
 
 const navLinks = [
@@ -20,7 +20,27 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <header className="sticky top-0 z-50 w-full">
+      <div className="bg-primary text-primary-foreground border-b border-primary-foreground/10">
+        <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-2 text-sm">
+          <p className="truncate text-primary-foreground/90">
+            <span className="hidden sm:inline font-medium">Tender This™ Live Bootcamp</span>
+            <span className="sm:hidden font-medium">Live Bootcamp</span>
+            <span className="text-primary-foreground/70"> · 30 & 31 July 2026</span>
+          </p>
+          <Link href="/tender-this">
+            <Button
+              size="sm"
+              className="shrink-0 bg-gold text-gold-foreground hover:bg-gold/90 border-0 font-semibold h-8 px-3"
+              data-testid="link-bootcamp-shortcut"
+            >
+              Book Now
+              <ArrowRight className="h-3.5 w-3.5 ml-1" aria-hidden="true" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+      <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2" data-testid="link-home-logo">
           <img src={logoMain} alt="Fortsiphi" className="h-12 w-auto" />
@@ -81,6 +101,15 @@ export function Navigation() {
                   </Button>
                 </Link>
               ))}
+              <Link href="/tender-this" onClick={() => setIsOpen(false)}>
+                <Button
+                  className="w-full bg-gold text-gold-foreground hover:bg-gold/90 border-0 font-semibold"
+                  data-testid="link-mobile-bootcamp-shortcut"
+                >
+                  Tender This™ Bootcamp
+                  <ArrowRight className="h-4 w-4 ml-2" aria-hidden="true" />
+                </Button>
+              </Link>
               <div className="border-t pt-4 mt-4">
                 <a href="tel:0100653247" className="flex items-center gap-2 text-muted-foreground mb-4 px-4">
                   <Phone className="h-4 w-4" />
@@ -95,6 +124,7 @@ export function Navigation() {
             </div>
           </SheetContent>
         </Sheet>
+      </div>
       </div>
     </header>
   );

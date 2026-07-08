@@ -40,12 +40,6 @@ interface BootcampResponse {
     inStock: boolean;
   };
   pricing: {
-    earlyBird: {
-      available: boolean;
-      priceFormatted: string;
-      deadline: string;
-      savingCents: number;
-    };
     standard: {
       priceFormatted: string;
     };
@@ -99,8 +93,8 @@ const faqs = [
     a: "30 & 31 July 2026, 9:00 AM to 5:00 PM each day.",
   },
   {
-    q: "Is there an early bird price?",
-    a: "Yes. Early bird is R4,635 until 15 July 2026 (only 3 seats). Standard price is R5,665 from 16 July 2026. Payment plans are available.",
+    q: "What is the ticket price?",
+    a: "The standard seat price is R5,665. Payment plans are available — contact us on WhatsApp to discuss options.",
   },
   {
     q: "How do I pay?",
@@ -159,7 +153,6 @@ export default function TenderThisLanding() {
   const countdown = useCountdown(data?.event.countdownTarget || "2026-07-30T09:00:00+02:00");
   const seatsLeft = data?.seats.left ?? 10;
   const soldOut = data?.seats.soldOut ?? false;
-  const earlyBirdAvailable = data?.pricing.earlyBird.available ?? false;
   const urgencyTone = seatsLeft <= 4 ? "urgent" : "normal";
 
   useEffect(() => {
@@ -305,7 +298,7 @@ export default function TenderThisLanding() {
                 Secure My Seat →
               </motion.a>
               <p className="mt-3 text-xs text-white/40">
-                Early bird: R4,635 · Standard: R5,665 · Payment plans available
+                R5,665 per seat · Payment plans available
               </p>
             </div>
 
@@ -624,54 +617,14 @@ export default function TenderThisLanding() {
               </p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Early Bird */}
+            <div className="max-w-md mx-auto">
               <div className="rounded-xl overflow-hidden border border-[#EBEBEB] flex flex-col">
-                <div
-                  className={`p-5 ${earlyBirdAvailable ? "bg-[#C9A84C] text-[#0B1D2E]" : "bg-[#0B1D2E] text-white relative"}`}
-                >
-                  {earlyBirdAvailable && (
-                    <span className="text-[11px] font-bold bg-[#0B1D2E] text-[#C9A84C] px-3 py-1 rounded-full">
-                      ONLY 3 SEATS
-                    </span>
-                  )}
-                  {!earlyBirdAvailable && (
-                    <span className="text-[11px] font-bold bg-red-600 text-white px-3 py-1 rounded-full">
-                      SOLD OUT
-                    </span>
-                  )}
-                  <p className="text-sm font-bold mt-3 uppercase tracking-widest">Early Bird</p>
-                  <p className="text-[38px] font-black leading-none mt-1">R4,635</p>
-                  <p className="text-[11px] mt-1 opacity-80">Until 15 July 2026 · Save R1,030</p>
-                </div>
-                <div className="p-5 flex-1 flex flex-col bg-[#F8F9FA]">
-                  {earlyBirdAvailable && data?.product.id ? (
-                    <CheckoutForm
-                      productId={data.product.id}
-                      productName={data.product.name}
-                      tier="early-bird"
-                      buttonLabel="Claim Early Bird Seat →"
-                      buttonClassName="bg-[#C9A84C] text-[#0B1D2E] hover:opacity-90"
-                    />
-                  ) : (
-                    <p className="text-center text-sm text-[#555] py-8 font-semibold">
-                      Early bird seats sold out
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* Standard */}
-              <div className="rounded-xl overflow-hidden border border-[#EBEBEB] flex flex-col">
-                <div className="p-5 bg-[#0B1D2E] text-white">
-                  <p className="text-sm font-bold uppercase tracking-widest">Standard</p>
+                <div className="p-5 bg-[#0B1D2E] text-white text-center">
+                  <p className="text-sm font-bold uppercase tracking-widest">Bootcamp Seat</p>
                   <p className="text-[38px] font-black leading-none mt-1">
                     {data?.pricing.standard.priceFormatted || "R5,665"}
                   </p>
-                  <p className="text-[11px] mt-1 text-white/60">From 16 July 2026</p>
-                  {!earlyBirdAvailable && (
-                    <p className="text-[11px] mt-2 text-[#C9A84C]">Early bird was R4,635</p>
-                  )}
+                  <p className="text-[11px] mt-1 text-white/60">30 & 31 July 2026 · Maximum 10 participants</p>
                 </div>
                 <div className="p-5 flex-1 flex flex-col bg-[#F8F9FA]">
                   {data?.product.id && (
