@@ -26,7 +26,7 @@ export function Navigation() {
           <p className="truncate text-primary-foreground/90">
             <span className="hidden sm:inline font-medium">Tender This™ Live Bootcamp</span>
             <span className="sm:hidden font-medium">Live Bootcamp</span>
-            <span className="text-primary-foreground/70"> · 30 & 31 July 2026</span>
+            <span className="text-primary-foreground/70"> · New date will be published soon</span>
           </p>
           <Link href="/tender-this">
             <Button

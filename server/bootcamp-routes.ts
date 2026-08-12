@@ -87,12 +87,12 @@ export function registerBootcampRoutes(app: Express) {
           },
         },
         event: {
-          dates: "30 & 31 July 2026",
+          dates: "New date will be published soon",
           time: "9:00 AM – 5:00 PM",
           venue: "Electron Exchange, Isando, Kempton Park",
           address:
             "Unit 49, Electron Exchange, 50 Electron Avenue, Isando, Kempton Park, 1619",
-          countdownTarget: "2026-07-30T09:00:00+02:00",
+          countdownTarget: "",
         },
         seats: {
           total: 10,

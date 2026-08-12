@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import {
@@ -90,7 +90,7 @@ const faqs = [
   },
   {
     q: "What are the event dates and times?",
-    a: "30 & 31 July 2026, 9:00 AM to 5:00 PM each day.",
+    a: "A new date will be published soon. Sessions run 9:00 AM to 5:00 PM each day once confirmed.",
   },
   {
     q: "What is the ticket price?",
@@ -109,24 +109,6 @@ const faqs = [
     a: "Yes. WhatsApp us on 081 365 5901 or call 010 065 3247 for questions about compliance documents or suitability.",
   },
 ];
-
-function useCountdown(target: string) {
-  const [now, setNow] = useState(Date.now());
-
-  useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  return useMemo(() => {
-    const diff = Math.max(0, new Date(target).getTime() - now);
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    return { days, hours, minutes, seconds };
-  }, [now, target]);
-}
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -150,10 +132,10 @@ export default function TenderThisLanding() {
     },
   });
 
-  const countdown = useCountdown(data?.event.countdownTarget || "2026-07-30T09:00:00+02:00");
   const seatsLeft = data?.seats.left ?? 10;
   const soldOut = data?.seats.soldOut ?? false;
   const urgencyTone = seatsLeft <= 4 ? "urgent" : "normal";
+  const eventDates = data?.event.dates || "New date will be published soon";
 
   useEffect(() => {
     document.title =
@@ -162,14 +144,14 @@ export default function TenderThisLanding() {
     if (meta) {
       meta.setAttribute(
         "content",
-        "Two-day hands-on Supply & Delivery tender submission bootcamp. Complete your real tender with expert guidance. 30 & 31 July 2026, Isando. Only 10 seats.",
+        "Two-day hands-on Supply & Delivery tender submission bootcamp. Complete your real tender with expert guidance. New date will be published soon. Isando. Only 10 seats.",
       );
     }
   }, []);
 
   const shareUrl = typeof window !== "undefined" ? window.location.href.split("?")[0] : "";
   const shareMessage = encodeURIComponent(
-    "I'm booking the Tender This Live Bootcamp with Fortsiphi — 30 & 31 July 2026. Only 10 seats. Join me: ",
+    "I'm booking the Tender This Live Bootcamp with Fortsiphi — new date will be published soon. Only 10 seats. Join me: ",
   );
 
   const handleCopyLink = async () => {
@@ -261,7 +243,7 @@ export default function TenderThisLanding() {
                 className="flex flex-wrap gap-4 mt-6 text-sm text-white/80"
               >
                 <span className="flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4 text-[#C9A84C]" /> 30 & 31 July 2026
+                  <Calendar className="h-4 w-4 text-[#C9A84C]" /> {eventDates}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="h-4 w-4 text-[#C9A84C]" /> 9:00 AM each day
@@ -549,32 +531,18 @@ export default function TenderThisLanding() {
         </div>
       </section>
 
-      {/* Section 9 — Event Details + Countdown */}
+      {/* Section 9 — Event Details */}
       <section className="bg-[#0B1D2E] text-white py-16">
         <div className="max-w-[760px] mx-auto px-5 sm:px-8 text-center">
           <SectionLabel>Event details</SectionLabel>
-          <h2 className="text-[26px] font-extrabold mb-8">30 & 31 July 2026</h2>
-          <div className="grid grid-cols-4 gap-3 mb-10">
-            {[
-              { label: "Days", value: countdown.days },
-              { label: "Hours", value: countdown.hours },
-              { label: "Minutes", value: countdown.minutes },
-              { label: "Seconds", value: countdown.seconds },
-            ].map((block) => (
-              <div
-                key={block.label}
-                className="relative bg-white/10 rounded-lg py-4 border-t-2 border-[#C9A84C]"
-              >
-                <div className="text-2xl sm:text-3xl font-black">{block.value}</div>
-                <div className="text-[11px] uppercase tracking-widest text-white/60 mt-1">
-                  {block.label}
-                </div>
-              </div>
-            ))}
-          </div>
+          <h2 className="text-[26px] font-extrabold mb-4">{eventDates}</h2>
+          <p className="text-white/70 text-sm mb-10 max-w-md mx-auto">
+            We&apos;re finalising the next bootcamp dates. Join the interest list or secure your
+            seat — we&apos;ll confirm the new date soon.
+          </p>
           <div className="grid sm:grid-cols-2 gap-4 text-left text-sm">
             {[
-              { icon: Calendar, label: "Dates", value: "30 & 31 July 2026" },
+              { icon: Calendar, label: "Dates", value: eventDates },
               { icon: Clock, label: "Time", value: "9:00 AM – 5:00 PM daily" },
               { icon: MapPin, label: "Venue", value: "Electron Exchange, Isando" },
               { icon: Users, label: "Capacity", value: "Maximum 10 participants" },
@@ -624,7 +592,7 @@ export default function TenderThisLanding() {
                   <p className="text-[38px] font-black leading-none mt-1">
                     {data?.pricing.standard.priceFormatted || "R5,665"}
                   </p>
-                  <p className="text-[11px] mt-1 text-white/60">30 & 31 July 2026 · Maximum 10 participants</p>
+                  <p className="text-[11px] mt-1 text-white/60">{eventDates} · Maximum 10 participants</p>
                 </div>
                 <div className="p-5 flex-1 flex flex-col bg-[#F8F9FA]">
                   {data?.product.id && (
